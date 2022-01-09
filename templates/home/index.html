@@ -1,17 +1,21 @@
 {% extends 'layouts/base.html' %}
 
-{% block content %}
+{% block main %}
 
 
-<h1 class="title">List of Movie Channels</h1>
-<ul>
-    {% for channel in channels %}
-        <li>
-            <a>
-                {{ channel.name }}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<section class="section">
+    <div class="container">
+            <h1 class="title">DSTV Movies Analytics</h1>
+            <h2 class="subtitle">
+                <a href="{% url 'movies_index' %}">Movies</a> |
+                <a href="{% url 'channels_index' %}">Channels</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+            
+    </div>
+</section>
 
 {% endblock %}

@@ -7,7 +7,7 @@
 <ul>
     {% for channel in channels %}
         <li>
-            <a>
+            <a href="{% url 'channel_detail' channel.id %}">
                 {{ channel.name }}
             </a>
         </li>

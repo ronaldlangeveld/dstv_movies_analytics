@@ -12,7 +12,7 @@
 <ul>
     {% for sched in schedule %}
     <li>
-        {{sched.show_time}}
+        {{sched.show_time}} on {{sched.channel.name}}
     </li>
 
 {% endfor %}
