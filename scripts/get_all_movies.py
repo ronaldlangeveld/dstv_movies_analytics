@@ -1,4 +1,5 @@
-from movies.models import Movies, Channels, Schedule
+from movies.models import Movie
+from channels.models import Channel, Schedule
 from datetime import timedelta, date
 import requests
 
@@ -18,9 +19,9 @@ def run():
     #         data = r.json()
     #         content = data['content']['channel_shows']
     #         for a in content:
-    #             channel = Channels.objects.get(channel_code=a['channel'])
+    #             channel = Channel.objects.get(channel_code=a['channel'])
     #             for a in a['shows']:
-    #                 movie, created = Movies.objects.get_or_create(title=a['title'])
+    #                 movie, created = Movie.objects.get_or_create(title=a['title'])
     #                 movie.description = a['blurb']
     #                 movie.save()
     #                 show_time = a['show_time_start_full']

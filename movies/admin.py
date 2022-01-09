@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movies, Channels, Schedule
+from .models import Movie
 # Register your models here.
 
-admin.site.register([Movies, Channels, Schedule])
+admin.site.register([Movie])

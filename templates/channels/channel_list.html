@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+
+<h1 class="title">List of Movie Channels</h1>
+<ul>
+    {% for channel in channels %}
+        <li>
+            <a>
+                {{ channel.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

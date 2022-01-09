@@ -1,23 +1,24 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView, DetailView
-from .models import Movies, Channels, Schedule
+from .models import Movie
+from channels.models import Channel, Schedule
 
 
 
 # Create your views here.
 
 class MoviesList(ListView):
-    model = Movies
+    model = Movie
     template_name = 'movies/movies_list.html'
     context_object_name = 'movies'
 
     def get_queryset(self):
-        return Movies.objects.all().order_by('title')
+        return Movie.objects.all().order_by('title')
 
 
 class MoviesDetail(DetailView):
-    model = Movies
+    model = Movie
     template_name = 'movies/movies_detail.html'
     context_object_name = 'movie'
 
@@ -26,3 +27,11 @@ class MoviesDetail(DetailView):
         context['schedule'] = Schedule.objects.filter(movie=self.object)
         return context
 
+
+class ChannelsList(ListView):
+    model = Channel
+    template_name = 'channels/channels_list.html'
+    context_object_name = 'channels'
+
+    def get_queryset(self):
+        return Channel.objects.all().order_by('name')
