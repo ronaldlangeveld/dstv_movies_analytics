@@ -26,12 +26,3 @@ class MoviesDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['schedule'] = Schedule.objects.filter(movie=self.object)
         return context
-
-
-class ChannelsList(ListView):
-    model = Channel
-    template_name = 'channels/channels_list.html'
-    context_object_name = 'channels'
-
-    def get_queryset(self):
-        return Channel.objects.all().order_by('name')
