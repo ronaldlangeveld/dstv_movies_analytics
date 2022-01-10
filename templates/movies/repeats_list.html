@@ -1,0 +1,27 @@
+{% extends 'movies/movies_layout.html' %}
+
+{% block content %}
+
+
+ <h2>Total {{movies.count}}</h2>
+ <table>
+     <thead>
+         <tr>
+             <th>Movie</th>
+             <th>Times shown</th>
+         </tr>
+     </thead>
+     <tbody>
+         {% for movie in movies %}
+
+         <tr>
+             <td><a href="{% url 'movies_detail' movie.id %}">{{ movie.title }}</a></td>
+             <td>{{ movie.num_repeats }}</td>
+         </tr>
+         {% endfor %}
+     </tbody>
+  
+ </table>
+
+
+ {% endblock %}
