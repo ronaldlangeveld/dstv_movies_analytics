@@ -14,4 +14,42 @@
     {% endfor %}
 </ul>
 
+
+{% for a in page_obj.page_range %}
+{{a}}
+{% endfor %}
+
+<nav class="pagination mt-6" role="navigation" aria-label="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}" class="pagination-previous is-disabled" title="This is the first page">Previous</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">Next page</a>
+    {% endif %}
+ 
+    {% for l in  page_obj.paginator.page_range %}
+    {% if l <= page_obj.number|add:10 and l >= page_obj.number|add:-10 %}
+       <a class="pagination-link {% if page_obj.number == l %} is-current {% endif %}" aria-label="Page {{ forloop.counter }}" aria-current="page" href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+    {% endif %}
+{% endfor %}
+
+
+
+    {% comment %}
+    <ul class="pagination-list">
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+        {% if i <= page_obj.number|add:5 and i >= page_obj.number|add:-5 %}
+        <li><a class="pagination-link is-current" aria-label="Page {{ i }}" aria-current="page">{{ i }}</a></li>
+        {% endif %}
+
+
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endcomment %}
+  </nav>
+
+
+
 {% endblock %}

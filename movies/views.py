@@ -14,6 +14,7 @@ class MoviesList(ListView):
     model = Movie
     template_name = 'movies/movies_list.html'
     context_object_name = 'movies'
+    paginate_by = 100
 
     def get_queryset(self):
         return Movie.objects.all().order_by('title')
