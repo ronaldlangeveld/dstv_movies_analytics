@@ -25,7 +25,6 @@ class ChannelDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['schedules'] = Schedule.objects.filter(channel=self.object).order_by('show_time').annotate(month=TruncMonth('show_time'), day=TruncDay('show_time'), year=TruncYear('show_time'))
-        print(context['schedules'])
+        context['schedules'] = Schedule.objects.filter(channel=self.object).order_by('-show_time')
         return context
     

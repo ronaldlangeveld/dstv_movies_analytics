@@ -33,21 +33,6 @@
     {% endif %}
 {% endfor %}
 
-
-
-    {% comment %}
-    <ul class="pagination-list">
-        {% for i in paginator.page_range %}
-        {% if page_obj.number == i %}
-        {% if i <= page_obj.number|add:5 and i >= page_obj.number|add:-5 %}
-        <li><a class="pagination-link is-current" aria-label="Page {{ i }}" aria-current="page">{{ i }}</a></li>
-        {% endif %}
-
-
-        {% endif %}
-        {% endfor %}
-    </ul>
-    {% endcomment %}
   </nav>
 
 

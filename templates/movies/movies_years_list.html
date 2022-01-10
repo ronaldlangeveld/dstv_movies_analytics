@@ -1,0 +1,22 @@
+{% extends 'movies/movies_layout.html' %}
+
+{% block content %}
+
+<h1 class="title is-2">Browse by year released</h1>
+<div class="columns is-multiline">
+    
+
+{% for year in movie_years %}
+
+<div class="column is-3">
+    {% if year.year is not None %}
+    <a href="{% url 'movies_by_year' year.year %}" class="has-text-weight-bold is-size-3 has-text-link">{{year.year}}</a>
+    {% endif %}
+</div>
+
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,22 +1,48 @@
 {% extends 'movies/movies_layout.html' %}
 
 {% block content %}
+{% load humanize %}
 
 
-<h1 class="title is-2">{{movie.title}}</h1>
+<h1 class="title is-2">{{movie.title}} <span class="is-size-6">({{movie.year}})</span></h1>
 <p class="subtitle is-4">{{movie.description}}</p>
 
 
-<h2 class="title is-4 mt-4">Showtimes</h2>
+{% if schedule__future.count > 0 %}
+
+<h1 class="title mt-4">Showing on tv soon</h1>
 
 <ul>
-    {% for sched in schedule %}
+    {% for schedule in schedule__future %}
     <li>
-        {{sched.show_time}} on {{sched.channel.name}}
-    </li>
-
-{% endfor %}
+        <a>
+            {{schedule.show_time}} on {{schedule.channel.name}}
+        </a>
+        </li>
+    {% endfor %}
 </ul>
+
+
+{% endif %}
+
+
+{% if schedule__past.count > 0 %}
+
+<h1 class="title mt-4">Previously Aired</h1>
+
+<ul>
+    {% for schedule in schedule__past%}
+    <li>
+        <a>
+            {{schedule.show_time}} on {{schedule.channel.name}}
+        </a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endif %}
+
 
 
 {% endblock %}

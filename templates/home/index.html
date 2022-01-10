@@ -1,16 +1,41 @@
-{% extends 'layouts/base.html' %}
 
+
+{% extends 'layouts/base.html' %}
+{% load humanize %}
 {% block main %}
 
 
 <section class="section">
     <div class="container">
-            <h1 class="title">DSTV Movies Analytics</h1>
-            <h2 class="subtitle">
-                <a href="{% url 'movies_index' %}">Movies</a> |
-                <a href="{% url 'channels_index' %}">Channels</a>
+        {% regroup schedule by channel__name as channelList %}
+
+        <div class="columns is-centered is-multiline">
+            {% for channel, movies in channelList %}
+            <div class="column is-3">
+                <p class="title is-size-4">{{channel}}</p>
+                {% regroup movies by show_time|naturalday as showTimeList %}
+                {% for show_time, movie in showTimeList %}
+                <p class="is-size-5 has-text-weight-bold has-text-centered mt-6 mb-6">{{show_time}}</p>
+                <ul>
+                {% for mv in movie %}
+                    <div class='notification {% if timestamp|date:"YmdHis" > mv.show_time|date:"YmdHis" and timestamp|date:"YmdHis" < mv.end_time|date:"YmdHis" %} is-success {% else %} is-light {% endif %}'>
+                        
+                        <div class="columns">
+                            <div class="column is-6">
+                                <span class="tag is-white">{{mv.show_time|time:"h:i a"}}</span>
+                            </div>
+                            <div class="column is-6">
+                                <a href="{% url 'movies_detail' mv.movie__id %}">{{mv.movie__title}}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </ul>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
-
 
 {% endblock %}

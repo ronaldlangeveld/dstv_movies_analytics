@@ -1,0 +1,20 @@
+{% extends 'movies/movies_layout.html' %}
+
+{% block content %}
+
+<h1 class="title is-size-2"> Movies made in {{request.resolver_match.kwargs.year}}</h1>
+
+
+
+    <ul>
+    {% for movie in movies %}
+
+    <li><a href="{% url 'movies_detail' movie.id %}">{{movie}}</a></li>
+
+
+    {% endfor %}
+    </ul>
+
+
+
+{% endblock %}
